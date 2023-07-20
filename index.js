@@ -2,9 +2,9 @@ require("express-async-errors");
 require("reflect-metadata");
 const mongoose = require("mongoose");
 const express = require("express");
-const userRouter = require("./routes/users/user.router");
+const userRouter = require("./src/routes/users/user.router");
 
-const { errorHandle } = require("./errors/AppError");
+const { errorHandle } = require("./src/errors/AppError");
 
 mongoose.connect("mongodb://127.0.0.1:27017/databaseEstoque", {
   useNewUrlParser: true,

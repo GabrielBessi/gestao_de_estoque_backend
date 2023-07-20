@@ -1,19 +1,32 @@
 const { AppError } = require("../../errors/AppError");
 const User = require("../../models/user/createUser.models");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+require("dotenv").config();
 
 const createUserServices = async ({ name, email, cnpj, password }) => {
+  const cryptoPassword = await bcrypt.genSalt(12);
+  const passwordHash = await bcrypt.hash(password, cryptoPassword);
+
   const user = new User({
     name: name,
     email: email,
     cnpj: cnpj,
-    password: password,
+    password: passwordHash,
     createdAt: new Date(),
   });
 
   try {
     const newUser = await user.save();
 
-    return newUser;
+    const token = jwt.sign(
+      {
+        id: newUser._id,
+      },
+      process.env.KEYSECRET
+    );
+
+    return { token: token, data: newUser };
   } catch (error) {
     throw new AppError();
   }
