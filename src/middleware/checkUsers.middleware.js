@@ -1,10 +1,14 @@
 const User = require("../models/user/createUser.models");
 
-const checkUserExistsMiddleware = async (req, res, next) => {
-  const { name, email, cnpj, password } = req.body;
+const checkUserMiddleware = async (req, res, next) => {
+  const { name, email, cnpj, password, checkPassword } = req.body;
 
   if (name == null || email == null || cnpj == null || password == null) {
     return res.status(400).json({ error: "Inválid data !" });
+  }
+
+  if (password !== checkPassword) {
+    return res.status(400).json({ error: "Passwords do not match" });
   }
 
   const emailExists = await User.findOne({ email: email });
@@ -16,4 +20,4 @@ const checkUserExistsMiddleware = async (req, res, next) => {
   next();
 };
 
-module.exports = checkUserExistsMiddleware;
+module.exports = checkUserMiddleware;
