@@ -12,9 +12,14 @@ const checkUserMiddleware = async (req, res, next) => {
   }
 
   const emailExists = await User.findOne({ email: email });
+  const cnpjExists = await User.findOne({ cnpj: cnpj });
 
   if (emailExists) {
     return res.status(400).json({ error: "User alreadys exists !" });
+  }
+
+  if (cnpjExists) {
+    return res.status(400).json({ error: "CNPJ já cadastrado !" });
   }
 
   next();
