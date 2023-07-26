@@ -2,7 +2,8 @@ require("express-async-errors");
 require("reflect-metadata");
 const mongoose = require("mongoose");
 const express = require("express");
-const userRouter = require("./src/routes/users/user.router");
+const routerUser = require("./src/routes/users/user.router");
+const routerProduct = require("./src/routes/products/product.router");
 
 const { errorHandle } = require("./src/errors/AppError");
 
@@ -18,7 +19,8 @@ const app = express();
 app.use(express.json());
 app.use(express.static("public"));
 
-app.use("/users", userRouter);
+app.use("/users", routerUser);
+app.use("/products", routerProduct);
 
 app.use(errorHandle);
 
