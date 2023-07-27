@@ -12,10 +12,9 @@ const createUserController = async (req, res) => {
 const loginUserController = async (req, res) => {
   const user = req.body;
 
-  const { status, message } = await loginUserServices(user);
-  console.log(status, message);
+  const { status, message, token } = await loginUserServices(user);
 
-  return res.status(status).json({ token: message });
+  return res.status(status).json({ data: { message: message, token: token } });
 };
 
 module.exports = { createUserController, loginUserController };

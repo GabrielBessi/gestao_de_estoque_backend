@@ -2,10 +2,11 @@ const createProductService = require("../../services/product/createProduct.servi
 
 const createProductController = async (req, res) => {
   const newProduct = req.body;
+  const id = req.user.id;
 
-  const product = await createProductService(newProduct);
+  const { message, status, data } = await createProductService(newProduct, id);
 
-  return res.status(200).json(product);
+  return res.status(status || 200).json({ message: message || data });
 };
 
 module.exports = createProductController;

@@ -1,13 +1,9 @@
 const Product = require("../../models/product/createProduct.model");
 
-const createProductService = async ({
-  name_product,
-  quantity,
-  code_product,
-  brand,
-  model,
-  description,
-}) => {
+const createProductService = async (
+  { name_product, quantity, code_product, brand, model, description },
+  id
+) => {
   const newProduct = new Product({
     name_product: name_product,
     quantity: quantity,
@@ -16,6 +12,7 @@ const createProductService = async ({
     model: model,
     description: description,
     createdAt: new Date(),
+    userId: id,
   });
 
   const productExist = await Product.findOne({ model: model });
@@ -28,6 +25,17 @@ const createProductService = async ({
       );
 
       return { message: "Product updated successfully" };
+    }
+
+    const checkCodeProduct = await Product.findOne({
+      code_product: code_product,
+    });
+
+    if (checkCodeProduct) {
+      return {
+        status: 400,
+        message: "There is already a product registered with this code",
+      };
     }
 
     const product = await newProduct.save();

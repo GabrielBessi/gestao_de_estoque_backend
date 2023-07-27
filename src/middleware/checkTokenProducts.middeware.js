@@ -14,6 +14,10 @@ const checkTokenProductsMiddleware = (req, res, next) => {
     if (error) {
       return res.status(401).json({ message: error.message });
     }
+
+    req.user = {
+      id: decoded.id,
+    };
   });
 
   next();

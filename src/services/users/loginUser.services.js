@@ -5,7 +5,6 @@ require("dotenv").config();
 
 const loginUserServices = async ({ email, password }) => {
   const user = await User.findOne({ email: email });
-  console.log(user);
 
   if (!user) {
     return { status: 400, message: "Email or password invalid" };
@@ -22,7 +21,7 @@ const loginUserServices = async ({ email, password }) => {
     process.env.KEYSECRET
   );
 
-  return { status: 200, message: token };
+  return { status: 200, token: token };
 };
 
 module.exports = loginUserServices;
