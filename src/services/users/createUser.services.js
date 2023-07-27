@@ -22,6 +22,7 @@ const createUserServices = async ({ name, email, cnpj, password }) => {
     const token = jwt.sign(
       {
         id: newUser._id,
+        name: newUser.name,
       },
       process.env.KEYSECRET
     );
