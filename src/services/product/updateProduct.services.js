@@ -20,8 +20,6 @@ const updateProductServices = async (
       { $set: updateProduct }
     );
 
-    console.log(product);
-
     return { message: "Successfully updated product" };
   } catch (error) {
     console.log(error);
