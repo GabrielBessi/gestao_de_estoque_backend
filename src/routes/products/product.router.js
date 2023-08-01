@@ -4,6 +4,7 @@ const checkTokenProductsMiddleware = require("../../middleware/checkTokenProduct
 const getProductsController = require("../../controller/products/getProducts.controller");
 const getProductIdController = require("../../controller/products/getProductId.controller");
 const updateProductController = require("../../controller/products/updateProduct.controller");
+const exitOfProductsController = require("../../controller/products/exitOfProduct.controller");
 
 const routerProduct = router();
 
@@ -15,6 +16,12 @@ routerProduct.post(
 
 routerProduct.get("", checkTokenProductsMiddleware, getProductsController);
 routerProduct.get("/:id", checkTokenProductsMiddleware, getProductIdController);
+routerProduct.patch(
+  "/exit-of-products",
+  checkTokenProductsMiddleware,
+  exitOfProductsController
+);
+
 routerProduct.patch(
   "/:id",
   checkTokenProductsMiddleware,

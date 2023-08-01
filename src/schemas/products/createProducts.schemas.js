@@ -30,6 +30,9 @@ const ProductSchema = mongoose.Schema({
   updatedAt: {
     type: Date,
   },
+  type: {
+    type: String,
+  },
   userId: {
     type: mongoose.ObjectId,
   },

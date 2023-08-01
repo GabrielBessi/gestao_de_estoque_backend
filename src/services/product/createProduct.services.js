@@ -12,6 +12,7 @@ const createProductService = async (
     model: model,
     description: description,
     createdAt: new Date(),
+    type: "Entrada",
     userId: id,
   });
 
