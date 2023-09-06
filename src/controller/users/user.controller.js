@@ -1,4 +1,6 @@
 const createUserServices = require("../../services/users/createUser.services");
+const getUserServices = require("../../services/users/getUser.services");
+
 const loginUserServices = require("../../services/users/loginUser.services");
 
 const createUserController = async (req, res) => {
@@ -10,11 +12,25 @@ const createUserController = async (req, res) => {
 };
 
 const loginUserController = async (req, res) => {
-  const user = req.body;
+  const loginUser = req.body;
 
-  const { status, message, token } = await loginUserServices(user);
+  const { status, message, token, user } = await loginUserServices(loginUser);
 
-  return res.status(status).json({ data: { message: message, token: token } });
+  return res
+    .status(status)
+    .json({ data: user, message: message, token: token });
 };
 
-module.exports = { createUserController, loginUserController };
+const getUserController = async (req, res) => {
+  const user = req.user.id;
+
+  const getUser = await getUserServices(user);
+
+  return res.status(200).json({ data: getUser });
+};
+
+module.exports = {
+  createUserController,
+  loginUserController,
+  getUserController,
+};
