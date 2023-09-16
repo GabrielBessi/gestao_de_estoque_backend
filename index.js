@@ -1,5 +1,6 @@
 require("express-async-errors");
 require("reflect-metadata");
+const cors = require("cors");
 const mongoose = require("mongoose");
 const express = require("express");
 const routerUser = require("./src/routes/users/user.router");
@@ -16,6 +17,7 @@ const database = mongoose.connection;
 const port = 3000;
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
