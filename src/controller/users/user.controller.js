@@ -14,11 +14,9 @@ const createUserController = async (req, res) => {
 const loginUserController = async (req, res) => {
   const loginUser = req.body;
 
-  const { status, message, token, user } = await loginUserServices(loginUser);
+  const { status, message, token } = await loginUserServices(loginUser);
 
-  return res
-    .status(status)
-    .json({ user: user, message: message, token: token });
+  return res.status(status).json({ message: message, token: token });
 };
 
 const getUserController = async (req, res) => {
