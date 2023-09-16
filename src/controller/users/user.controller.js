@@ -18,7 +18,7 @@ const loginUserController = async (req, res) => {
 
   return res
     .status(status)
-    .json({ data: user, message: message, token: token });
+    .json({ user: user, message: message, token: token });
 };
 
 const getUserController = async (req, res) => {
@@ -26,7 +26,7 @@ const getUserController = async (req, res) => {
 
   const getUser = await getUserServices(user);
 
-  return res.status(200).json({ data: getUser });
+  return res.status(200).json(getUser);
 };
 
 module.exports = {

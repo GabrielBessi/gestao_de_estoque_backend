@@ -27,7 +27,7 @@ const createUserServices = async ({ name, email, cnpj, password }) => {
       process.env.KEYSECRET
     );
 
-    return { token: token, data: newUser };
+    return { token: token, user: newUser };
   } catch (error) {
     throw new AppError();
   }
