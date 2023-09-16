@@ -21,7 +21,7 @@ const loginUserServices = async ({ email, password }) => {
     process.env.KEYSECRET
   );
 
-  return { status: 200, token: token, user: user };
+  return { status: 200, token: token };
 };
 
 module.exports = loginUserServices;
