@@ -15,7 +15,11 @@ routerProduct.post(
 );
 
 routerProduct.get("", checkTokenProductsMiddleware, getProductsController);
-routerProduct.get("/:id", checkTokenProductsMiddleware, getProductIdController);
+routerProduct.get(
+  "/:codeProduct",
+  checkTokenProductsMiddleware,
+  getProductIdController
+);
 routerProduct.patch(
   "/exit-of-products",
   checkTokenProductsMiddleware,

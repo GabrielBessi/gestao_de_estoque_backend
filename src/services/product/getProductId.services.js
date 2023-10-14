@@ -1,9 +1,9 @@
 const Product = require("../../models/product/createProduct.model");
 
-const getProductIdServices = async (idProduct, idUser) => {
+const getProductIdServices = async (codeProduct, idUser) => {
   try {
     const product = await Product.findOne({
-      _id: idProduct,
+      code_product: codeProduct,
       userId: idUser,
     });
 
