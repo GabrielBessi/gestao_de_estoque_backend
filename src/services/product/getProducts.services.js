@@ -4,7 +4,7 @@ const getProductsServices = async (id) => {
   try {
     const product = await Product.find({ userId: id });
 
-    return { data: product };
+    return { products: product };
   } catch (error) {
     console.log(error);
   }
