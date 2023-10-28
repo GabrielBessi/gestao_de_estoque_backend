@@ -8,7 +8,7 @@ const getProductIdServices = async (codeProduct, idUser) => {
     });
 
     if (!product) {
-      return { status: 400, data: { message: "Search error" } };
+      return { status: 404, data: { message: "Product Not Found" } };
     }
 
     return { data: product };

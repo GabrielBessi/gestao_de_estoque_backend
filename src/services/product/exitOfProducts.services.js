@@ -1,6 +1,13 @@
 const Product = require("../../models/product/createProduct.model");
 
 const exitOfProductsServices = async ({ code_product, quantity }) => {
+  if (quantity === 0) {
+    return {
+      status: 400,
+      message: { error: "Please enter a valid value" },
+    };
+  }
+
   const product = await Product.findOne({
     code_product: code_product,
   });
